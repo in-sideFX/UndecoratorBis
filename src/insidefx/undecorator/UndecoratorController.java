@@ -350,7 +350,7 @@ public class UndecoratorController {
             // Maximize on double click
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if (undecorator.getStageStyle() != StageStyle.UTILITY && !stage.isFullScreen() && mouseEvent.getClickCount() > 1) {
+                if (undecorator.getStageStyle() != StageStyle.UTILITY && !stage.isFullScreen() && stage.isResizable() && mouseEvent.getClickCount() > 1) {
                     if (mouseEvent.getSceneY() - SHADOW_WIDTH < MAXIMIZE_BORDER) {
                         undecorator.maximizeProperty().set(!undecorator.maximizeProperty().get());
                         mouseEvent.consume();

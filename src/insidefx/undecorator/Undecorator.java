@@ -639,6 +639,8 @@ public class Undecorator extends StackPane {
         maximizeProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
+                if(!stage.isResizable())
+                    return;
                 Tooltip tooltip = maximize.getTooltip();
                 if (tooltip.getText().equals(LOC.getString("Maximize"))) {
                     tooltip.setText(LOC.getString("Restore"));

@@ -112,14 +112,14 @@ public class UndecoratorScene extends Scene {
     }
 
     public void setBackgroundStyle(String style) {
-        undecorator.getBackgroundNode().setStyle(style);
+        undecorator.getShadowNode().setStyle(style);
     }
     public void setBackgroundOpacity(double opacity) {
-        undecorator.getBackgroundNode().setOpacity(opacity);
+        undecorator.getShadowNode().setOpacity(opacity);
     }
     public void setBackgroundPaint(Paint paint) {
         undecorator.removeDefaultBackgroundStyleClass();
-        undecorator.getBackgroundNode().setFill(paint);
+        undecorator.getShadowNode().setFill(paint);
     }
 
     public Undecorator getUndecorator() {

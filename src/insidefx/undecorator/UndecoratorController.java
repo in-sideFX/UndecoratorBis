@@ -55,7 +55,6 @@ public class UndecoratorController {
      */
     protected void maximizeOrRestore() {
 
-
         Stage stage = undecorator.getStage();
 
         if (maximized) {
@@ -203,7 +202,6 @@ public class UndecoratorController {
                     undecorator.setShadow(true);
                 }
 
-
                 newX = mouseEvent.getScreenX();
                 newY = mouseEvent.getScreenY();
                 double deltax = newX - initX;
@@ -299,9 +297,8 @@ public class UndecoratorController {
     }
 
     /**
-     * Under Windows, the undecorator Stage could be been dragged below the Task
-     * bar and then no way to grab it again... On Mac, do not drag above the
-     * menu bar
+     * Under Windows, the undecorator Stage could be been dragged below the Task bar and then no way to grab it again...
+     * On Mac, do not drag above the menu bar
      *
      * @param y
      */
@@ -412,6 +409,22 @@ public class UndecoratorController {
 
                 testDock(stage, mouseEvent);
                 mouseEvent.consume();
+
+                ///////////////////////
+//                Robot robot = null;
+//                try {
+//                    robot = new Robot();
+//                } catch (AWTException ex) {
+//                }
+//                stage.getScene().getRoot().setVisible(false);
+//                BufferedImage screenShot = robot.createScreenCapture(new Rectangle((int) stage.getX(), (int) stage.getY(), (int) stage.getWidth(), (int) 40));
+//                stage.getScene().getRoot().setVisible(true);
+//                Image background = SwingFXUtils.toFXImage(screenShot, null);
+//
+//                ImagePattern imagePattern = new ImagePattern(background);
+////                undecorator.getBackgroundRectangle().setEffect(new BoxBlur());
+//                undecorator.getBackgroundRectangle().setFill(imagePattern);
+                ////////////////
             }
         });
         node.setOnMouseReleased(new EventHandler<MouseEvent>() {

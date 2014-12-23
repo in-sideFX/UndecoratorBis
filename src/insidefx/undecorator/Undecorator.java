@@ -281,6 +281,7 @@ public class Undecorator extends StackPane {
 
         // Add all layers
         super.getChildren().addAll(shadowRectangle, backgroundRect, clientArea, stageDecoration, glassPane);
+//        super.getChildren().addAll(shadowRectangle, backgroundRect);
 
         /*
          * Focused stage
@@ -541,8 +542,12 @@ public class Undecorator extends StackPane {
         shadowRectangle.getStyleClass().remove(shadowBackgroundStyleClass);
     }
 
-    public Rectangle getBackgroundNode() {
+    public Rectangle getShadowNode() {
         return shadowRectangle;
+    }
+
+    public Rectangle getBackgroundRectangle() {
+        return backgroundRect;
     }
 
     /**
@@ -639,8 +644,9 @@ public class Undecorator extends StackPane {
         maximizeProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
-                if(!stage.isResizable())
+                if (!stage.isResizable()) {
                     return;
+                }
                 Tooltip tooltip = maximize.getTooltip();
                 if (tooltip.getText().equals(LOC.getString("Maximize"))) {
                     tooltip.setText(LOC.getString("Restore"));

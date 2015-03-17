@@ -110,7 +110,9 @@ public class Undecorator extends StackPane {
     private Label title;
     @FXML
     private Pane decorationRoot;
-
+    @FXML
+    private ContextMenu contextMenu;
+    
     MenuItem maximizeMenuItem;
     CheckMenuItem fullScreenMenuItem;
     Region clientArea;
@@ -565,7 +567,6 @@ public class Undecorator extends StackPane {
     public void initDecoration() {
         MenuItem minimizeMenuItem = null;
         // Menu
-        final ContextMenu contextMenu = new ContextMenu();
         contextMenu.setAutoHide(true);
         if (minimize != null) { // Utility Stage
             minimizeMenuItem = new MenuItem(LOC.getString("Minimize"));

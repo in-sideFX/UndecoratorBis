@@ -33,7 +33,10 @@
     <Button id="StageMenu" fx:id="menu" layoutX="0.0" mnemonicParsing="false" pickOnBounds="true" prefHeight="30.0" prefWidth="39.0" styleClass="decoration-button-menu" text="" AnchorPane.leftAnchor="-3.0" AnchorPane.topAnchor="-7.0">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
-         </cursor></Button>
+         </cursor>
+         <contextMenu>
+            <ContextMenu fx:id="contextMenu" />
+         </contextMenu></Button>
     <Button fx:id="fullscreen" mnemonicParsing="false" pickOnBounds="true" prefHeight="30.0" prefWidth="34.0" style="" styleClass="decoration-button-fullscreen" text="" AnchorPane.rightAnchor="98.0" AnchorPane.topAnchor="-3.0">
          <cursor>
             <Cursor fx:constant="DEFAULT" />

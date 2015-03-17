@@ -25,6 +25,9 @@
     <Button id="close" fx:id="menu" layoutX="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="32.0" scaleX="1.0" scaleY="1.0" style="" styleClass="decoration-button-menu" text="" AnchorPane.topAnchor="-7.0">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
-         </cursor></Button>
+         </cursor>
+         <contextMenu>
+            <ContextMenu fx:id="contextMenu" />
+         </contextMenu></Button>
   </children>
 </AnchorPane>

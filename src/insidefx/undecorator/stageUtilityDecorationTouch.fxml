@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="decorationRoot" fx:id="decorationRoot" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="-1.0" pickOnBounds="false" prefHeight="400.0" prefWidth="600.0" snapToPixel="true" styleClass="decoration-resize" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <Button fx:id="close" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="15.0" prefWidth="17.0" scaleX="1.0" scaleY="1.0" style="" styleClass="decoration-button-close" text="" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="-7.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></Button>
+    <Button id="close" fx:id="menu" layoutX="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="15.0" prefWidth="20.0" scaleX="1.0" scaleY="1.0" style="" styleClass="decoration-button-menu" text="" AnchorPane.topAnchor="-7.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <contextMenu>
+            <ContextMenu fx:id="contextMenu" />
+         </contextMenu></Button>
+      <Label id="TitleLabel" fx:id="title" layoutX="108.0" layoutY="8.0" mouseTransparent="true" prefHeight="23.0" prefWidth="384.0" style="-fx-alignment: center;" text="Title bar" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="-7.0" />
+  </children>
+</AnchorPane>

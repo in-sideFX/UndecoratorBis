@@ -13,7 +13,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.web.*?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="380.0" minWidth="450.0" pickOnBounds="true" prefHeight="400.0" prefWidth="640.0" styleClass="clientarea-background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="380.0" minWidth="450.0" pickOnBounds="true" prefHeight="400.0" prefWidth="640.0" styleClass="clientarea-background" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <AnchorPane id="" pickOnBounds="false" prefHeight="37.0" prefWidth="640.0" style="-fx-background-color: transparent;" visible="true">
       <children>
@@ -23,11 +23,11 @@
     </AnchorPane>
       <HBox fx:id="clientAreaHbox" style="-fx-background-color: #eeeeeecc; -fx-background-radius: 5;" VBox.vgrow="ALWAYS">
          <children>
-      <Accordion fx:id="accordion" prefHeight="264.0" prefWidth="238.0">
+      <Accordion fx:id="accordion" minWidth="240.0">
         <panes>
-          <TitledPane expanded="false" prefHeight="250.0" prefWidth="238.0" text="Features">
+          <TitledPane expanded="false" minWidth="280.0" prefWidth="300.0" text="Features">
             <content>
-              <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="173.0" prefWidth="214.0">
+              <AnchorPane id="Content" minHeight="0.0" minWidth="200.0" prefHeight="298.0" prefWidth="300.0">
                            <children>
                               <Slider fx:id="sliderOpacity" blockIncrement="0.1" layoutX="138.0" layoutY="117.0" max="1.0" min="0.1" prefHeight="16.0" prefWidth="81.0" value="1.0" />
                               <Label layoutX="10.0" layoutY="115.0" text="Client Area opacity:" />
@@ -36,9 +36,9 @@
                         </AnchorPane>
             </content>
           </TitledPane>
-          <TitledPane prefHeight="262.0" prefWidth="238.0" text="Stages" fx:id="x1">
+          <TitledPane text="Stages" fx:id="x1">
             <content>
-              <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane id="Content" minHeight="0.0" minWidth="0.0">
                 <children>
                   <Button mnemonicParsing="false" onAction="#handleShowUtilityStage" text="Show Utility stage" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="4.0" />
                   <Button mnemonicParsing="false" onAction="#handleShowNonResizableStage" text="Show non resizable stage" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="37.0" />
@@ -50,15 +50,7 @@
       </Accordion>
       <AnchorPane HBox.hgrow="ALWAYS">
                <children>
-                  <ScrollPane layoutX="14.0" layoutY="49.0" prefHeight="300.0" prefWidth="380.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="40.0">
-                     <content>
-                        <ImageView pickOnBounds="true" preserveRatio="true" smooth="false">
-                           <image>
-                              <Image url="@snippet.png" />
-                           </image>
-                        </ImageView>
-                     </content>
-                  </ScrollPane>
+                  <TextArea editable="false" text="&#10;/**&#10; * Code snippet&#10; * @author in-sideFX&#10; */&#10;public class UndecoratorDemoSkeleton extends Application {&#10;&#10;    Stage primaryStage;&#10;&#10;    @Override&#10;    public void start(final Stage stage) throws Exception {&#10;        primaryStage = stage;&#10;        primaryStage.setTitle(&quot;Undecorator Stage&quot;);&#10;&#10;        // The UI (Client Area) to display&#10;        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(&quot;ClientAreaNew.fxml&quot;));&#10;        fxmlLoader.setController(this);&#10;        Region root = (Region) fxmlLoader.load();&#10;&#10;        // The Undecorator as a Scene&#10;        final UndecoratorScene undecoratorScene = new UndecoratorScene(primaryStage, root);&#10;        &#10;        // Enable fade transition&#10;        undecoratorScene.setFadeInTransition();&#10;&#10;        /*&#10;         * Fade out transition on window closing request&#10;         */&#10;        primaryStage.setOnCloseRequest(new EventHandler&lt;WindowEvent&gt;() {&#10;            @Override&#10;            public void handle(WindowEvent we) {&#10;                we.consume();   // Do not hide yet&#10;                undecoratorScene.setFadeOutTransition();&#10;            }&#10;        });&#10;&#10;        primaryStage.setScene(undecoratorScene);&#10;&#10;        primaryStage.toFront();&#10;        primaryStage.show();&#10;    }&#10;&#10;    public static void main(String[] args) {&#10;        launch(args);&#10;    }&#10;}&#10;" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="50.0" />
                   <Hyperlink fx:id="hyperlink" layoutX="254.0" layoutY="6.0" text="more detais here..." AnchorPane.rightAnchor="14.0" />
                   <Label layoutX="14.0" layoutY="8.0" text="How to enable it into your project:" AnchorPane.leftAnchor="14.0" />
                </children>

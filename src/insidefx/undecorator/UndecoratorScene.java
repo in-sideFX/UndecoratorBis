@@ -44,7 +44,25 @@ public class UndecoratorScene extends Scene {
     static public final String DEFAULT_STYLESHEET_UTILITY = "skin/undecoratorUtilityStage.css";
     static public final String DEFAULT_STAGEDECORATION = "stagedecoration.fxml";
     static public final String DEFAULT_STAGEDECORATION_UTILITY = "stageUtilityDecoration.fxml";
+
+    static public final String DEFAULT_STYLESHEET_TOUCH = "skin/Touch/undecorator.css";
+    static public final String DEFAULT_STYLESHEET_UTILITY_TOUCH = "skin/Touch/undecoratorUtilityStage.css";
+    static public final String DEFAULT_STAGEDECORATION_TOUCH = "stagedecorationTouch.fxml";
+    static public final String DEFAULT_STAGEDECORATION_UTILITY_TOUCH = "stageUtilityDecorationTouch.fxml";
+
+    static public String STYLESHEET = DEFAULT_STYLESHEET_TOUCH;
+    static public String STYLESHEET_UTILITY = DEFAULT_STYLESHEET_UTILITY_TOUCH;
+    static public String STAGEDECORATION = DEFAULT_STAGEDECORATION_TOUCH;
+    static public String STAGEDECORATION_UTILITY = DEFAULT_STAGEDECORATION_UTILITY_TOUCH;
+
     Undecorator undecorator;
+
+    static public void setClassicDecoration() {
+        UndecoratorScene.STAGEDECORATION = UndecoratorScene.DEFAULT_STAGEDECORATION;
+        UndecoratorScene.STAGEDECORATION_UTILITY = UndecoratorScene.DEFAULT_STAGEDECORATION_UTILITY;
+        UndecoratorScene.STYLESHEET = UndecoratorScene.DEFAULT_STYLESHEET;
+        UndecoratorScene.STYLESHEET_UTILITY = UndecoratorScene.DEFAULT_STYLESHEET_UTILITY;
+    }
 
     /**
      * Basic constructor with built-in behavior
@@ -53,7 +71,7 @@ public class UndecoratorScene extends Scene {
      * @param root your UI to be displayed in the Stage
      */
     public UndecoratorScene(Stage stage, Region root) {
-        this(stage, StageStyle.TRANSPARENT, root, DEFAULT_STAGEDECORATION);
+        this(stage, StageStyle.TRANSPARENT, root, STAGEDECORATION);
     }
 
     /**
@@ -73,9 +91,9 @@ public class UndecoratorScene extends Scene {
          */
         if (stageDecorationFxml == null) {
             if (stageStyle == StageStyle.UTILITY) {
-                stageDecorationFxml = DEFAULT_STAGEDECORATION_UTILITY;
+                stageDecorationFxml = STAGEDECORATION_UTILITY;
             } else {
-                stageDecorationFxml = DEFAULT_STAGEDECORATION;
+                stageDecorationFxml = STAGEDECORATION;
             }
         }
         undecorator = new Undecorator(stage, root, stageDecorationFxml, stageStyle);
@@ -83,9 +101,9 @@ public class UndecoratorScene extends Scene {
 
         // Customize it by CSS if needed:
         if (stageStyle == StageStyle.UTILITY) {
-            undecorator.getStylesheets().add(DEFAULT_STYLESHEET_UTILITY);
+            undecorator.getStylesheets().add(STYLESHEET_UTILITY);
         } else {
-            undecorator.getStylesheets().add(DEFAULT_STYLESHEET);
+            undecorator.getStylesheets().add(STYLESHEET);
         }
 
         // Transparent scene and stage
@@ -97,11 +115,16 @@ public class UndecoratorScene extends Scene {
         // Default Accelerators
         undecorator.installAccelerators(this);
 
+        // Forward pref and max size to main stage
+        stage.setMinWidth(undecorator.getMinWidth());
+        stage.setMinHeight(undecorator.getMinHeight());
+        stage.setWidth(undecorator.getPrefWidth());
+        stage.setHeight(undecorator.getPrefHeight());
     }
 
     public void removeDefaultStylesheet() {
-        undecorator.getStylesheets().remove(DEFAULT_STYLESHEET);
-        undecorator.getStylesheets().remove(DEFAULT_STYLESHEET_UTILITY);
+        undecorator.getStylesheets().remove(STYLESHEET);
+        undecorator.getStylesheets().remove(STYLESHEET_UTILITY);
     }
 
     public void addStylesheet(String css) {
@@ -136,4 +159,5 @@ public class UndecoratorScene extends Scene {
     public void setFadeOutTransition() {
         undecorator.setFadeOutTransition();
     }
+
 }

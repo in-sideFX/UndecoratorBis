@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="decorationRoot" fx:id="decorationRoot" pickOnBounds="false" prefHeight="400.0" prefWidth="600.0" styleClass="decoration-resize" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="-1.0" pickOnBounds="false" snapToPixel="true" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="-7.0">
+        <children>
+          <Button fx:id="close" mnemonicParsing="false" pickOnBounds="true" prefHeight="30.0" prefWidth="34.0" styleClass="decoration-button-close" text="" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <rotationAxis>
+              <Point3D />
+            </rotationAxis>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+          </Button>
+          <Button fx:id="maximize" mnemonicParsing="false" pickOnBounds="true" prefHeight="30.0" prefWidth="34.0" styleClass="decoration-button-maximize" text="" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Button>
+          <Button fx:id="minimize" mnemonicParsing="false" pickOnBounds="true" prefHeight="30.0" prefWidth="34.0" style="" styleClass="decoration-button-minimize" text="" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.0">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Button>
+          <Button id="StageMenu" fx:id="menu" layoutX="0.0" mnemonicParsing="false" pickOnBounds="true" prefHeight="30.0" prefWidth="39.0" styleClass="decoration-button-menu" text="" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <contextMenu>
+                  <ContextMenu fx:id="contextMenu" />
+               </contextMenu>
+            </Button>
+          <Button fx:id="fullscreen" mnemonicParsing="false" pickOnBounds="true" prefHeight="30.0" prefWidth="34.0" style="" styleClass="decoration-button-fullscreen" text="" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="0.0">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Button>
+          <Label id="TitleLabel" fx:id="title" layoutX="50.0" layoutY="3.0" mouseTransparent="true" prefHeight="23.0" prefWidth="384.0" style="-fx-alignment: center;" text="Title bar" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="3.0" />
+        </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+   </children>
+</AnchorPane>

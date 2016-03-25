@@ -12,9 +12,9 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.web.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="true" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color:transparent;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="true" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color:transparent;" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <HBox prefHeight="32.0" prefWidth="640.0" />
+      <AnchorPane minHeight="35.0" style="-fx-background-color: white;" VBox.vgrow="NEVER" />
     <AnchorPane id="draggableNode" maxHeight="-1.0" maxWidth="-1.0" pickOnBounds="false" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
         <SplitPane dividerPositions="0.40034364261168387" focusTraversable="true" prefHeight="227.0" prefWidth="584.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="14.0">
@@ -65,7 +65,7 @@
         </SplitPane>
       </children>
     </AnchorPane>
-    <AnchorPane prefHeight="49.0" prefWidth="640.0">
+    <AnchorPane prefHeight="50.0" prefWidth="640.0">
       <children>
         <Button defaultButton="true" mnemonicParsing="false" onAction="#handleUtilityAction" text="OK" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
         <Button cancelButton="true" mnemonicParsing="false" onAction="#handleUtilityAction" text="Cancel" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="14.0" />
@@ -75,7 +75,4 @@
   <stylesheets>
     <URL value="@demoapp.css" />
   </stylesheets>
-   <padding>
-      <Insets bottom="5.0" />
-   </padding>
 </VBox>

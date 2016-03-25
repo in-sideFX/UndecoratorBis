@@ -2,7 +2,7 @@
  * Demo purpose In-SideFX (Un)decorator for JavaFX scene License: You can use this code for any kind of purpose,
  * commercial or not.
  */
-package demoapp;
+package demoapp.classic;
 
 import insidefx.undecorator.Undecorator;
 import insidefx.undecorator.UndecoratorScene;
@@ -51,7 +51,10 @@ public class UndecoratorSceneDemo extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ClientArea.fxml"));
         fxmlLoader.setController(this);
         Region root = (Region) fxmlLoader.load();
-
+        
+        // Override default Touch theme for this demo
+       UndecoratorScene.setClassicDecoration();
+        
         // The Undecorator as a Scene
         final UndecoratorScene undecoratorScene = new UndecoratorScene(primaryStage, root);
         // Overrides defaults
@@ -76,7 +79,7 @@ public class UndecoratorSceneDemo extends Application {
         });
 
         // Application icons
-        Image image = new Image("/demoapp/in-sidefx.png");
+        Image image = new Image("/demoapp/ud.png");
         primaryStage.getIcons().addAll(image);
         initUI();
 
@@ -100,7 +103,7 @@ public class UndecoratorSceneDemo extends Application {
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    Desktop.getDesktop().browse(new URI("https://arnaudnouard.wordpress.com/category/javafx/undecorator/"));
+                    Desktop.getDesktop().browse(new URI("https://arnaudnouard.wordpress.com/2014/12/20/undecorator-bis/"));
                 } catch (Exception ex) {
                 }
             }
@@ -122,7 +125,7 @@ public class UndecoratorSceneDemo extends Application {
         utilityStage.setTitle("Stage Utility type demo");
         UndecoratorScene scene = new UndecoratorScene(utilityStage, StageStyle.UTILITY, root, null);
         // Overrides defaults
-        scene.addStylesheet("demoapp/demoapp.css");
+        scene.addStylesheet("demoapp/classic/demoapp.css");
 
         utilityStage.setScene(scene);
         utilityStage.initModality(Modality.WINDOW_MODAL);

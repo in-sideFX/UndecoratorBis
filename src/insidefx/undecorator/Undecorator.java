@@ -112,7 +112,7 @@ public class Undecorator extends StackPane {
     private Pane decorationRoot;
     @FXML
     private ContextMenu contextMenu;
-    
+
     MenuItem maximizeMenuItem;
     CheckMenuItem fullScreenMenuItem;
     Region clientArea;
@@ -247,8 +247,9 @@ public class Undecorator extends StackPane {
                 != null) {
             fullscreen.setVisible(stage.isResizable());
         }
-
-        resize.setVisible(stage.isResizable());
+        if (resize != null) {
+            resize.setVisible(stage.isResizable());
+        }
         if (maximize
                 != null) {
             maximize.setVisible(stage.isResizable());
@@ -302,23 +303,23 @@ public class Undecorator extends StackPane {
          */
         if (fullscreen
                 != null) {
-            fullscreen.setOnMouseEntered(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent t) {
-                    if (stage.isFullScreen()) {
-                        fullscreen.setOpacity(1);
-                    }
-                }
-            });
-
-            fullscreen.setOnMouseExited(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent t) {
-                    if (stage.isFullScreen()) {
-                        fullscreen.setOpacity(0.4);
-                    }
-                }
-            });
+//            fullscreen.setOnMouseEntered(new EventHandler<MouseEvent>() {
+//                @Override
+//                public void handle(MouseEvent t) {
+//                    if (stage.isFullScreen()) {
+//                        fullscreen.setOpacity(1);
+//                    }
+//                }
+//            });
+//
+//            fullscreen.setOnMouseExited(new EventHandler<MouseEvent>() {
+//                @Override
+//                public void handle(MouseEvent t) {
+//                    if (stage.isFullScreen()) {
+//                        fullscreen.setOpacity(0.4);
+//                    }
+//                }
+//            });
 
             stage.fullScreenProperty().addListener(new ChangeListener<Boolean>() {
                 @Override
@@ -327,7 +328,9 @@ public class Undecorator extends StackPane {
                     fullScreenMenuItem.setSelected(fullscreenState.booleanValue());
                     maximize.setVisible(!fullscreenState.booleanValue());
                     minimize.setVisible(!fullscreenState.booleanValue());
-                    resize.setVisible(!fullscreenState.booleanValue());
+                    if (resize != null) {
+                        resize.setVisible(!fullscreenState.booleanValue());
+                    }
                     if (fullscreenState.booleanValue()) {
                         // String and icon
                         fullscreen.getStyleClass().add("decoration-button-unfullscreen");
@@ -339,8 +342,8 @@ public class Undecorator extends StackPane {
                         }
                         // Animate the fullscreen button
                         fullscreenButtonTransition = new TranslateTransition();
-                        fullscreenButtonTransition.setDuration(Duration.millis(3000));
-                        fullscreenButtonTransition.setToX(66);
+                        fullscreenButtonTransition.setDuration(Duration.millis(2000));
+                        fullscreenButtonTransition.setToX(80);
                         fullscreenButtonTransition.setNode(fullscreen);
                         fullscreenButtonTransition.setOnFinished(new EventHandler<ActionEvent>() {
                             @Override
@@ -349,14 +352,14 @@ public class Undecorator extends StackPane {
                             }
                         });
                         fullscreenButtonTransition.play();
-                        fullscreen.setOpacity(0.2);
+                      //  fullscreen.setOpacity(0.2);
                     } else {
                         // String and icon
                         fullscreen.getStyleClass().remove("decoration-button-unfullscreen");
                         fullscreen.setTooltip(new Tooltip(LOC.getString("FullScreen")));
 
                         undecoratorController.restoreFullScreenSavedBounds(stage);
-                        fullscreen.setOpacity(1);
+                      //  fullscreen.setOpacity(1);
                         if (fullscreenButtonTransition != null) {
                             fullscreenButtonTransition.stop();
                         }
@@ -437,25 +440,28 @@ public class Undecorator extends StackPane {
     }
 
     /**
-     * Init the minimum/pref/max size in order to be reflected in the primary stage
+     * Init the minimum/pref/max sizes in order to be reflected in the primary stage
      */
     private void computeAllSizes() {
-        double minWidth = minWidth(getHeight());
+        double minWidth = minWidth(getWidth());
         setMinWidth(minWidth);
-        double minHeight = minHeight(getWidth());
+        double minHeight = minHeight(getHeight());
         setMinHeight(minHeight);
 
-        double prefHeight = prefHeight(getWidth());
-        setPrefHeight(prefHeight);
-        double prefWidth = prefWidth(getHeight());
+        double prefWidth = prefWidth(getWidth());
         setPrefWidth(prefWidth);
+        setWidth(prefWidth);
 
-        double maxWidth = maxWidth(getHeight());
-        if (maxWidth > 0) {
+        double prefHeight = prefHeight(getHeight());
+        setPrefHeight(prefHeight);
+        setHeight(prefHeight);
+
+        double maxWidth = maxWidth(getWidth());
+        if (maxWidth > minWidth) {
             setMaxWidth(maxWidth);
         }
-        double maxHeight = maxHeight(getWidth());
-        if (maxHeight > 0) {
+        double maxHeight = maxHeight(getHeight());
+        if (maxHeight > minHeight) {
             setMaxHeight(maxHeight);
         }
     }
@@ -475,7 +481,11 @@ public class Undecorator extends StackPane {
 
     @Override
     protected double computeMaxHeight(double d) {
-        return clientArea.getMaxHeight() + SHADOW_WIDTH * 2 + RESIZE_PADDING * 2;
+        double maxHeight = clientArea.getMaxHeight();
+        if (maxHeight > 0) {
+            return maxHeight + SHADOW_WIDTH * 2 + RESIZE_PADDING * 2;
+        }
+        return maxHeight;
     }
 
     @Override
@@ -487,7 +497,11 @@ public class Undecorator extends StackPane {
 
     @Override
     protected double computeMaxWidth(double d) {
-        return clientArea.getMaxWidth() + SHADOW_WIDTH * 2 + RESIZE_PADDING * 2;
+        double maxWidth = clientArea.getMaxWidth();
+        if (maxWidth > 0) {
+            return maxWidth + SHADOW_WIDTH * 2 + RESIZE_PADDING * 2;
+        }
+        return maxWidth;
     }
 
     @Override
@@ -653,12 +667,16 @@ public class Undecorator extends StackPane {
                     tooltip.setText(LOC.getString("Restore"));
                     maximizeMenuItem.setText(LOC.getString("Restore"));
                     maximize.getStyleClass().add("decoration-button-restore");
-                    resize.setVisible(false);
+                    if (resize != null) {
+                        resize.setVisible(false);
+                    }
                 } else {
                     tooltip.setText(LOC.getString("Maximize"));
                     maximizeMenuItem.setText(LOC.getString("Maximize"));
                     maximize.getStyleClass().remove("decoration-button-restore");
-                    resize.setVisible(true);
+                    if (resize != null) {
+                        resize.setVisible(true);
+                    }
                 }
             }
         });

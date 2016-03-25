@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="decorationRoot" fx:id="decorationRoot" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="-1.0" pickOnBounds="false" prefHeight="400.0" prefWidth="600.0" snapToPixel="true" styleClass="decoration-resize" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="decorationRoot" fx:id="decorationRoot" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="-1.0" pickOnBounds="false" prefHeight="400.0" prefWidth="600.0" snapToPixel="true" styleClass="decoration-resize" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <Button fx:id="close" mnemonicParsing="false" pickOnBounds="true" prefHeight="30.0" prefWidth="34.0" styleClass="decoration-button-close" text="" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-3.0">
       <rotationAxis>
@@ -41,7 +41,7 @@
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></Button>
-    <Label id="TitleLabel" fx:id="title" layoutY="7.0" mouseTransparent="true" prefWidth="384.0" text="Title bar" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="166.0">
+    <Label id="TitleLabel" fx:id="title" layoutY="7.0" mouseTransparent="true" prefWidth="384.0" style="-fx-alignment: center;" text="Title bar" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
       <effect>
         <Glow />
       </effect>

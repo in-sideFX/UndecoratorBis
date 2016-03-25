@@ -600,28 +600,28 @@ public class UndecoratorController {
     }
 
     public boolean isRightEdge(double x, double y, Bounds boundsInParent) {
-        if (x < boundsInParent.getWidth() && x > boundsInParent.getWidth() - RESIZE_PADDING - SHADOW_WIDTH) {
+        if (x < boundsInParent.getWidth() && x > boundsInParent.getWidth() - RESIZE_PADDING) {
             return true;
         }
         return false;
     }
 
     public boolean isTopEdge(double x, double y, Bounds boundsInParent) {
-        if (y >= 0 && y < RESIZE_PADDING + SHADOW_WIDTH) {
+        if (y >= 0 && y < RESIZE_PADDING) {
             return true;
         }
         return false;
     }
 
     public boolean isBottomEdge(double x, double y, Bounds boundsInParent) {
-        if (y < boundsInParent.getHeight() && y > boundsInParent.getHeight() - RESIZE_PADDING - SHADOW_WIDTH) {
+        if (y < boundsInParent.getHeight() && y > boundsInParent.getHeight() - RESIZE_PADDING) {
             return true;
         }
         return false;
     }
 
     public boolean isLeftEdge(double x, double y, Bounds boundsInParent) {
-        if (x >= 0 && x < RESIZE_PADDING + SHADOW_WIDTH) {
+        if (x >= 0 && x < RESIZE_PADDING) {
             return true;
         }
         return false;

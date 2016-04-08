@@ -4,3 +4,10 @@ blog.txt
 !nbproject/private/
 nbproject\private\private.properties
 /dist/
+.gradle/
+build/
+*.iml
+*.ipr
+*.iws
+.idea/
+out/

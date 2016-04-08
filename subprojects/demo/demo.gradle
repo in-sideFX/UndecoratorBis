@@ -1,0 +1,20 @@
+apply plugin: 'application'
+
+mainClassName = 'demoapp.classic.UndecoratorSceneDemo'
+
+dependencies {
+    compile project(':undecorator')
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir rootProject.file('src')
+            include 'demoapp/**'
+        }
+        resources {
+            srcDir rootProject.file('src')
+            include 'demoapp/**'
+        }
+    }
+}

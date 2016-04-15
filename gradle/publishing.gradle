@@ -42,7 +42,7 @@ def pomConfig = {
     }
     developers { 
         developer {
-            id 'in-sideFX'
+            id 'in-sidefx'
             name 'Arnaud Nouard'
             roles{ role 'Developer' }
         }
@@ -64,12 +64,10 @@ publishing {
     }
 }
 
-if (!project.hasProperty('bintrayUsername')) ext.bintrayUsername = ''
+if (!project.hasProperty('bintrayUsername')) ext.bintrayUsername = 'in-sidefx'
 if (!project.hasProperty('bintrayApiKey')) ext.bintrayApiKey = ''
 
 bintray {
-    user = project.bintrayUsername
-    key = project.bintrayApiKey
     publications = ['mavenJava']
     pkg {
         repo = project.project_bintray_repo

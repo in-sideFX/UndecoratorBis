@@ -113,7 +113,7 @@ public class Undecorator extends StackPane {
     private ContextMenu contextMenu;
 
     MenuItem maximizeMenuItem;
-    CheckMenuItem fullScreenMenuItem;
+    CheckMenuItem fullScreenMenuItem = null;
     Region clientArea;
     Pane stageDecoration = null;
     Rectangle shadowRectangle;
@@ -324,7 +324,7 @@ public class Undecorator extends StackPane {
                 @Override
                 public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean fullscreenState) {
                     setShadow(!fullscreenState.booleanValue());
-                    fullScreenMenuItem.setSelected(fullscreenState.booleanValue());
+                    if (fullScreenMenuItem != null) fullScreenMenuItem.setSelected(fullscreenState.booleanValue());
                     maximize.setVisible(!fullscreenState.booleanValue());
                     minimize.setVisible(!fullscreenState.booleanValue());
                     if (resize != null) {

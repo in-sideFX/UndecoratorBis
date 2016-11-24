@@ -113,7 +113,7 @@ public class Undecorator extends StackPane {
     private ContextMenu contextMenu;
 
     MenuItem maximizeMenuItem;
-    CheckMenuItem fullScreenMenuItem;
+    CheckMenuItem fullScreenMenuItem = null;
     Region clientArea;
     Pane stageDecoration = null;
     Rectangle shadowRectangle;
@@ -324,7 +324,7 @@ public class Undecorator extends StackPane {
                 @Override
                 public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean fullscreenState) {
                     setShadow(!fullscreenState.booleanValue());
-                    fullScreenMenuItem.setSelected(fullscreenState.booleanValue());
+                    if (fullScreenMenuItem != null) fullScreenMenuItem.setSelected(fullscreenState.booleanValue());
                     maximize.setVisible(!fullscreenState.booleanValue());
                     minimize.setVisible(!fullscreenState.booleanValue());
                     if (resize != null) {
@@ -388,7 +388,6 @@ public class Undecorator extends StackPane {
      * Compute the needed clip for stage's shadow border
      *
      * @param newBounds
-     * @param shadowVisible
      */
     void setShadowClip(Bounds newBounds) {
         external.relocate(
@@ -580,69 +579,73 @@ public class Undecorator extends StackPane {
     public void initDecoration() {
         MenuItem minimizeMenuItem = null;
         // Menu
-        contextMenu.setAutoHide(true);
-        if (minimize != null) { // Utility Stage
-            minimizeMenuItem = new MenuItem(LOC.getString("Minimize"));
-            minimizeMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.M, KeyCombination.SHORTCUT_DOWN));
 
-            minimizeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-                    switchMinimize();
-                }
-            });
-            contextMenu.getItems().add(minimizeMenuItem);
-        }
-        if (maximize != null && stage.isResizable()) { // Utility Stage type
-            maximizeMenuItem = new MenuItem(LOC.getString("Maximize"));
-            maximizeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-                    switchMaximize();
-                    contextMenu.hide(); // Stay stuck on screen
-                }
-            });
-            contextMenu.getItems().addAll(maximizeMenuItem, new SeparatorMenuItem());
-        }
+	    if (contextMenu != null) {
+		    contextMenu.setAutoHide(true);
+		    if (minimize != null) { // Utility Stage
+			    minimizeMenuItem = new MenuItem(LOC.getString("Minimize"));
+			    minimizeMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.M, KeyCombination.SHORTCUT_DOWN));
 
-        // Fullscreen
-        if (stageStyle != StageStyle.UTILITY && stage.isResizable()) {
-            fullScreenMenuItem = new CheckMenuItem(LOC.getString("FullScreen"));
-            fullScreenMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-                    // fake
-                    //maximizeProperty().set(!maximizeProperty().get());
-                    switchFullscreen();
-                }
-            });
-            fullScreenMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.F, KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN));
+			    minimizeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+				    @Override
+				    public void handle(ActionEvent e) {
+					    switchMinimize();
+				    }
+			    });
+			    contextMenu.getItems().add(minimizeMenuItem);
+		    }
+		    if (maximize != null && stage.isResizable()) { // Utility Stage type
+			    maximizeMenuItem = new MenuItem(LOC.getString("Maximize"));
+			    maximizeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+				    @Override
+				    public void handle(ActionEvent e) {
+					    switchMaximize();
+					    contextMenu.hide(); // Stay stuck on screen
+				    }
+			    });
+			    contextMenu.getItems().addAll(maximizeMenuItem, new SeparatorMenuItem());
+		    }
 
-            contextMenu.getItems().addAll(fullScreenMenuItem, new SeparatorMenuItem());
-        }
+		    // Fullscreen
+		    if (stageStyle != StageStyle.UTILITY && stage.isResizable()) {
+			    fullScreenMenuItem = new CheckMenuItem(LOC.getString("FullScreen"));
+			    fullScreenMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+				    @Override
+				    public void handle(ActionEvent e) {
+					    // fake
+					    //maximizeProperty().set(!maximizeProperty().get());
+					    switchFullscreen();
+				    }
+			    });
+			    fullScreenMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.F, KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN));
 
-        // Close
-        MenuItem closeMenuItem = new MenuItem(LOC.getString("Close"));
-        closeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                switchClose();
-            }
-        });
-        closeMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.W, KeyCombination.SHORTCUT_DOWN));
+			    contextMenu.getItems().addAll(fullScreenMenuItem, new SeparatorMenuItem());
+		    }
 
-        contextMenu.getItems().add(closeMenuItem);
+		    // Close
+		    MenuItem closeMenuItem = new MenuItem(LOC.getString("Close"));
+		    closeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+			    @Override
+			    public void handle(ActionEvent e) {
+				    switchClose();
+			    }
+		    });
+		    closeMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.W, KeyCombination.SHORTCUT_DOWN));
 
-        menu.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent t) {
-                if (contextMenu.isShowing()) {
-                    contextMenu.hide();
-                } else {
-                    contextMenu.show(menu, Side.BOTTOM, 0, 0);
-                }
-            }
-        });
+		    contextMenu.getItems().add(closeMenuItem);
+
+		    menu.setOnMousePressed(new EventHandler<MouseEvent>() {
+			    @Override
+			    public void handle(MouseEvent t) {
+				    if (contextMenu.isShowing()) {
+					    contextMenu.hide();
+				    } else {
+					    contextMenu.show(menu, Side.BOTTOM, 0, 0);
+				    }
+			    }
+		    });
+
+	    }
 
         // Close button
         close.setTooltip(new Tooltip(LOC.getString("Close")));

@@ -3,7 +3,7 @@ build
 blog.txt
 !nbproject/private/
 nbproject\private\private.properties
-/dist/
+dist/
 .gradle/
 build/
 *.iml
